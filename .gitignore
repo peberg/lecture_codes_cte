@@ -160,4 +160,5 @@ cython_debug/
 #.idea/
 
 #ignore all files in folder ___figs
-#___figs/*
+___figs/*
+___datasets/*
