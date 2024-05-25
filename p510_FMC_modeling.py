@@ -2,7 +2,7 @@ import time
 import pickle
 import numpy as np
 import matplotlib.pyplot as plt
-from p010_cte_waves import source_signal, fd_step, index_helpers, Receiver
+from p200_cte_waves import source_signal, fd_step, index_helpers, Receiver
 
 #Model parameters
 A = 80 #amplitude
