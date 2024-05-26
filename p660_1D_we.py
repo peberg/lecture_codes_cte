@@ -2,23 +2,23 @@ import numpy as np
 import matplotlib.pyplot as plt
 
 # Parameters
-length = 2.0        # Length of the string
 v = 1.0             # Wave speed
-dx = 0.005           # Space step
-dt = 0.002          # Time step
+dx = 0.01           # Space step
+dt = 0.004          # Time step
 T_max = 2.0         # Maximum time
 boundary = "Dirichlet"  # "Dirichlet" or "Neumann"
 
 print("CFL ", (v*dt)/dx)
 
 # Initialization
-x = np.arange(-0.5*length, 0.5*length, dx)
+x = np.arange(0, 1+dx, dx)
 u = np.zeros_like(x)  # u at time n
 u_new = np.zeros_like(x)  # u at time n+1
 u_old = np.zeros_like(x)  # u at time n-1
 
 # Initial condition
-u_init = np.exp(-(400*x**2))
+n = 4
+u_init = np.sin(n * np.pi * x)
 
 # Set the initial condition u_old for the first time step
 u = u_init.copy()
@@ -49,6 +49,5 @@ for t in np.arange(0, T_max, dt):
     plt.plot(x, u, 'k')
     plt.xlabel('x')
     plt.ylabel('u')
-    plt.title(f'Wave on a string at T_max={T_max} with {boundary} boundary')
     plt.ylim([-1.1 * np.max(np.abs(u_init)), 1.1 * np.max(np.abs(u_init))])
-    plt.pause(0.001)
+    plt.pause(0.0001)
