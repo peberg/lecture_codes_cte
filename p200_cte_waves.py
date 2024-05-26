@@ -341,9 +341,10 @@ class Receiver:
                 color=color,
             )
 
-    def plot_scan(self, title: str = "", save_path: str = None, cmap="bwr"):
+    def plot_scan(self, title: str = "", save_path: str = None, cmap="bwr", vmax=None):
         fig, ax = plt.subplots()
-        vmax = 0.95 * np.max(np.abs(self.scan))
+        if vmax is None:
+            vmax = 0.95 * np.max(np.abs(self.scan))
         ax.imshow(
             self.scan,
             aspect="auto",

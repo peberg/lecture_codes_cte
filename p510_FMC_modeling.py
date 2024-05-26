@@ -89,7 +89,7 @@ for sou_idx in range(nr):
     sou_x_idx = rec.rec_x_idcs[sou_idx]
     sou_y_idx = rec.rec_y_idcs[sou_idx]
 
-    if plot:
+    if plot and sou_idx in [int((1/4)*nr), int((2/4)*nr), int((3/4)*nr)]:
         fig, ax = plt.subplots()
         ax.axis("off")
         plot_max = 0.15 * A
@@ -113,7 +113,7 @@ for sou_idx in range(nr):
         uplot = np.squeeze(u[0].copy())
         uplot[o_mask] = np.nan
 
-        if plot:
+        if plot and sou_idx in [int((1/4)*nr), int((2/4)*nr), int((3/4)*nr)]:
             plt.cla()
             plt.title(f't={1e6*t_idx*dt:.2f} $\mu$s')
             plt.imshow(uplot, cmap=cmap, extent=[x0, x1, y0, y1])
@@ -125,13 +125,13 @@ for sou_idx in range(nr):
             ax.set_xlabel('x (m)')
             ax.set_ylabel('y (m)')
             plt.pause(0.001)
-    if plot:
+    if plot and sou_idx in [int((1/4)*nr), int((2/4)*nr), int((3/4)*nr)]:
         plt.close()
 
     print(f'   Average time per time step: {1000*time_collector/nt:.3f} ms')
     rec_collector.append(rec)
-    if plot:
-        rec.plot_scan(cmap=cmap)
+    if plot and sou_idx in [int((1/4)*nr), int((2/4)*nr), int((3/4)*nr)]:
+        rec.plot_scan(cmap=cmap, vmax = 0.2 * np.max(np.abs(rec.scan)))
 
 #Save rec_collector
 with open('___datasets/p510_FMC_rec_dataset.pkl', 'wb') as f:
